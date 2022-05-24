@@ -36,7 +36,7 @@ public class DataLoader {
                 new Player(15, "Jesperi", "Kotkaniemi", "foward", true),
                 new Player(71, "Jake", "Evans", "foward", false),
                 new Player(27, "Alexander", "Romanov", "defenseman", false),
-                new Player(6, "Shea", "Weber", "defenseman", true)
+                new Player(6, "Shea", "Weber", "defenseman", false)
         );
     }
 }

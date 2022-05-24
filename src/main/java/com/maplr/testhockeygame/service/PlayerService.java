@@ -4,5 +4,5 @@ import com.maplr.testhockeygame.model.Player;
 
 public interface PlayerService {
 
-    Player changeCaptainRoleOnPlayer(Long id);
+    Player changeCaptainRoleOnPlayer(Long id) throws Exception;
 }

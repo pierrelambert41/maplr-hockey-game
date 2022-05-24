@@ -19,7 +19,7 @@ public class PlayerController {
      * @return The player object
      */
     @PutMapping("/captain/{id}")
-    public ResponseEntity<Player> changeCaptainRoleOnPlayer(@PathVariable Long id) {
+    public ResponseEntity<Player> changeCaptainRoleOnPlayer(@PathVariable Long id) throws Exception {
         Player result = playerService.changeCaptainRoleOnPlayer(id);
         return ResponseEntity.ok(result);
     }

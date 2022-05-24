@@ -1,6 +1,7 @@
 package com.maplr.testhockeygame.service;
 
 import com.maplr.testhockeygame.model.Player;
+import com.maplr.testhockeygame.model.Team;
 import com.maplr.testhockeygame.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,14 +18,25 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public Player changeCaptainRoleOnPlayer(Long id) {
-        Player player = playerRepository.findById(id).orElseThrow(null);
-        if (player.isCaptain()) {
-            player.setCaptain(false);
-        } else {
+    public Player changeCaptainRoleOnPlayer(Long id) throws Exception {
+        Player player = playerRepository.getById(id);
+        if (player != null) {
+            this.removeCaptainRoleOnPlayer(player.getTeam());
             player.setCaptain(true);
+            playerRepository.save(player);
+            return player;
         }
-        playerRepository.save(player);
-        return player;
+
+        throw new Exception("Aucun joueur n'a été trouvé");
+    }
+
+    private void removeCaptainRoleOnPlayer(Team team) {
+        team.getPlayers()
+                .stream().
+                filter(Player::isCaptain)
+                .forEach(player -> {
+                    player.setCaptain(false);
+                    playerRepository.save(player);
+        });
     }
 }

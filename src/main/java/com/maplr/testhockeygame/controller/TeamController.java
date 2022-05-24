@@ -4,6 +4,7 @@ package com.maplr.testhockeygame.controller;
 import com.maplr.testhockeygame.model.Player;
 import com.maplr.testhockeygame.service.TeamService;
 import com.maplr.testhockeygame.model.Team;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,12 @@ public class TeamController {
     @GetMapping("/{year}")
     public ResponseEntity<Team> getTeamByYear(@PathVariable Long year) {
         Team result = teamService.getTeamByYear(year);
-        return ResponseEntity.ok(result);
+        try {
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
     /**

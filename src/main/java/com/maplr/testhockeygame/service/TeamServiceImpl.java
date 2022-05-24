@@ -25,6 +25,7 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public Team addPlayerIntoTeamByYear(Long year, Player player) {
         Team team = getTeamByYear(year);
+        player.setTeam(team);
         team.getPlayers().add(player);
         return teamRepository.save(team);
     }
