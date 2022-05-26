@@ -15,7 +15,7 @@ public class Team {
     private String coach;
     private long year;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "team")
     private List<Player> players;
 
     public Team() {}

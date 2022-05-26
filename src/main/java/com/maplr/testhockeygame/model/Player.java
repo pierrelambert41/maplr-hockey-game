@@ -20,6 +20,7 @@ public class Player {
     private boolean isCaptain;
 
     @ManyToOne
+    @JoinColumn(name="team_id")
     private Team team;
 
     public Player() {}
